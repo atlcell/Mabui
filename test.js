@@ -17,7 +17,12 @@ await page.type('input[id="field-id"]', 'Botname'); //TOKEN
 await page.type('input[id="field-pin"]', 'PIN'); //PIN
 await page.$eval('input[id="field-long-login"]', check => check.checked = true); //REMEMBER THIS BOT/INSTANCE
 
-await page.screenshot({ path: 'LOGIN.png' });
+await page.screenshot({ path: 'LOGIN-PRE-SUBMIT.png' });
+await page.$eval('form[id="https://sys.4channel.org/auth"]', form => form.submit());
+
+await page.waitForNavigation();
+await page.screenshot({ path: 'LOGIN-POST-SUBMIT.png' });
+
 await browser.close();
 })();
 
